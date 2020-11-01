@@ -6,13 +6,13 @@ import { string } from 'prop-types'
 import style from './MenuRange.module.scss'
 
 const InputHexColor = ({ value, onChange, onBlur }) => {
-	return (
-		<Box 
-			width="200px"
-			height="50px"
-			className="bc-gray"
-			borderRight={1}
-		>
+  return (
+    <Box 
+      width="200px"
+      height="50px"
+      className="bc-gray"
+      borderRight={1}
+    >
       <InputMask 
         mask="#******"
         onChange={(e)=> onChange(e.target.value)}
@@ -20,13 +20,13 @@ const InputHexColor = ({ value, onChange, onBlur }) => {
         value={value}
         className={style.input_color_picker}
       />
-		</Box>
-	)
+    </Box>
+  )
 }
 InputHexColor.propTypes = {
-    color: string
+  color: string
 }
 InputHexColor.defaultProps = {
-    color: "ffffff"
+  color: "ffffff"
 }
 export default InputHexColor
