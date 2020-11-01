@@ -1,0 +1,16 @@
+.m {
+  &r {
+    &-15 {
+      margin-right: 15px !important;
+    }
+  }
+}
+.bc {
+  &-gray {
+    border-color: #808080 !important;
+  }
+}
+.boxS {
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+  
