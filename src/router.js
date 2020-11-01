@@ -13,33 +13,33 @@ const routes = [
 
 const Router = ({ history }) => {
   return (
-    <ConnectedRouter history={history}>
-        <Route
-          render={state => {
-            const { location } = state
-            return (
-                  <Switch location={location}>
-                    {routes.map(({ path, Component, exact, props }) => (
-                      <Route
-                        path={path}
-                        key={path}
-                        exact={exact}
-                        render={() => {
-                          return (
-                            <div>
-                              <Suspense fallback={null}>
-                                <Component {...props} />
-                              </Suspense>
-                            </div>
-                          )
-                        }}
-                      />
-                    ))}
-                  </Switch>
-            )
-          }}
-        />
-    </ConnectedRouter>
+  <ConnectedRouter history={history}>
+    <Route
+      render={state => {
+        const { location } = state
+          return (
+            <Switch location={location}>
+              {routes.map(({ path, Component, exact, props }) => (
+                <Route
+                  path={path}
+                  key={path}
+                  exact={exact}
+                  render={() => {
+                    return (
+                      <div>
+                        <Suspense fallback={null}>
+                          <Component {...props} />
+                        </Suspense>
+                      </div>
+                    )
+                  }}
+                />
+              ))}
+            </Switch>
+          )
+        }}
+      />
+  </ConnectedRouter>
   )
 }
 
