@@ -15,7 +15,7 @@ export function* getAddNewColor({ color }) {
     const { data: { colors }} = yield call(request, `https://api.color.pizza/v1/${color}`, options)
     yield put(getAddNewSuccess({ color: colors }))
   } catch (error) {
-    yield put(getAddNewFailure({ colors: {
+    yield put(getAddNewFailure({ color: {
       name: `#${color}`,
       hex: `#${color}`
     }}))
