@@ -1,17 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+// reportWebVitals();
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createBrowserHistory } from 'history'
+import { createStore, applyMiddleware, compose } from 'redux'
+import { Provider } from 'react-redux'
+import createSagaMiddleware from 'redux-saga'
+import { routerMiddleware } from 'connected-react-router'
+
+import reducers from './redux/reducers'
+import sagas from './redux/sagas'
+import Router from './router'
+
+// middlewared
+const history = createBrowserHistory()
+const sagaMiddleware = createSagaMiddleware()
+const routeMiddleware = routerMiddleware(history)
+const middlewares = [sagaMiddleware, routeMiddleware]
+
+const store = createStore(reducers(history), compose(applyMiddleware(...middlewares)))
+sagaMiddleware.run(sagas)
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  <Provider store={store}>
+      <Router history={history} />
+  </Provider>,
+  document.getElementById('root'),
+)
